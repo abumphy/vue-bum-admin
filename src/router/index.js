@@ -24,7 +24,13 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
+  },
+  {
+    path: "/bum-table",
+    name: "BumTable",
+    component: () =>
+      import(/* webpackChunkName: "table" */ "../views/bum-table")
+  },
 ];
 
 const router = new VueRouter({

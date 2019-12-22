@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <el-button type="primary" @click="handleLogin">登录</el-button>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: 'Login',
+  name: '',
   data () {
     return {
     };
@@ -18,11 +16,7 @@ export default {
 
   mounted: {},
 
-  methods: {
-    handleLogin(){
-      this.$router.push('/bum-table')
-    }
-  }
+  methods: {}
 }
 
 </script>
