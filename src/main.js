@@ -8,7 +8,9 @@ import 'normalize.css/normalize.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
-import '@/styles/index.scss' // global css
+import '@/styles/index.scss' // global css 全局样式
+
+import './icons' // icon
 
 Vue.use(ElementUI, { size: 'small', zIndex: 3000 });
 
