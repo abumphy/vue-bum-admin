@@ -10,7 +10,7 @@
     >
       <el-table-column fixed prop="date" label="日期" width="150"></el-table-column>
       <el-table-column prop="name" label="姓名" width="120">
-        <template scope="scope">
+        <template slot-scope="scope">
           <el-input
             size="small"
             v-model="scope.row.name"
@@ -95,6 +95,7 @@ export default {
   methods: {}
 };
 </script>
+
 <style lang='scss' scoped>
 .table-container {
   .tb-edit .el-input {

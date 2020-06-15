@@ -117,16 +117,18 @@ module.exports = {
     /* 
       * 含义：默认情况下，只有 *.module.[ext] 结尾的文件才会被视作 CSS Modules 模块。
       设置为 true 后你就可以去掉文件名中的 .module 并将所有的 *.(css|scss|sass|less|styl(us)?) 文件视为 CSS Modules 模块。
+      * 启用 CSS modules for all css / pre-processor files.
       * Type: boolean
       * Default: false
     */
-    modules: false,
+    requireModuleExtension: true,
 
     /* 
       * 含义：是否将组件中的 CSS 提取至一个独立的 CSS 文件中 (而不是动态注入到 JavaScript 中的 inline 代码)。
       提取 CSS 在开发环境模式下是默认不开启的，因为它和 CSS 热重载不兼容。
       * Type: boolean | Object
       * Default: 生产环境下是 true，开发环境下是 false
+      * 是否使用css分离插件ExtractTextPlugin
     */
     extract: process.env.NODE_ENV === "production",
 
@@ -138,7 +140,7 @@ module.exports = {
     sourceMap: false,
 
     /*
-     * 含义：向 CSS 相关的 loader 传递选项
+     * 含义：向 CSS 相关的 loader 传递选项，即css预设器配置项
      * Type: Object
      * Default: {}
      */

@@ -1,7 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
+/* Layout */
+import Layout from '@/layout'
+
 import Login from "../views/login";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
@@ -12,19 +15,32 @@ const routes = [
     component: Login
   },
   {
-    path: "/home",
-    name: "home",
-    component: Home
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+        name: 'Dashboard',
+        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      }
+    ]
   },
-  {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  },
+  // {
+  //   path: "/home",
+  //   name: "home",
+  //   component: Home
+  // },
+  // {
+  //   path: "/about",
+  //   name: "about",
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () =>
+  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
+  // },
   {
     path: "/bum-table",
     name: "BumTable",
