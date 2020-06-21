@@ -8,7 +8,12 @@
       highlight-current-row
       @row-click="handleCurrentChange"
     >
-      <el-table-column fixed prop="date" label="日期" width="150"></el-table-column>
+      <el-table-column
+        fixed
+        prop="date"
+        label="日期"
+        width="150"
+      ></el-table-column>
       <el-table-column prop="name" label="姓名" width="120">
         <template slot-scope="scope">
           <el-input
@@ -17,20 +22,36 @@
             placeholder="请输入姓名"
             @change="handleEdit(scope.$index, scope.row)"
           ></el-input>
-          <span>{{scope.row.name}}</span>
+          <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="province" label="省份" width="120"></el-table-column>
+      <el-table-column
+        prop="province"
+        label="省份"
+        width="120"
+      ></el-table-column>
       <el-table-column prop="city" label="市区" width="120"></el-table-column>
-      <el-table-column prop="address" label="地址" width="300"></el-table-column>
+      <el-table-column
+        prop="address"
+        label="地址"
+        width="300"
+      ></el-table-column>
       <el-table-column prop="zip" label="邮编" width="120"></el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button @click="handleClick(scope.row)" type="text" size="small"
+            >查看</el-button
+          >
+          <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
+            >编辑</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
+    <ul id="users">
+      模拟数据
+      <li v-for="user in users" v-bind:key="user.id">{{ user.name }}</li>
+    </ul>
   </div>
 </template>
 
@@ -72,7 +93,8 @@ export default {
           address: "上海市普陀区金沙江路 1516 弄",
           zip: 200333
         }
-      ]
+      ],
+      users: []
     };
   },
 
@@ -80,7 +102,19 @@ export default {
 
   computed: {},
 
-  mounted: {
+  created(){
+    fetch("/api/users")
+        .then((res) => res.json())
+        .then((json) => {
+          this.users = json.users
+        })
+  },
+
+  mounted() {
+    
+  },
+
+  methods: {
     handleCurrentChange(row, event, column) {
       console.log(row, event, column, event.currentTarget);
     },
@@ -90,9 +124,7 @@ export default {
     handleEdit(index, row) {
       console.log(index, row);
     }
-  },
-
-  methods: {}
+  }
 };
 </script>
 

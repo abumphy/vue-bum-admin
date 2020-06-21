@@ -78,9 +78,14 @@
             <el-table-column prop="name" label="姓名" width="120"></el-table-column>
             <el-table-column prop="address" label="地址"></el-table-column>
           </el-table>
+          <ul id="users">
+      模拟数据
+      <li v-for="user in users" v-bind:key="user.id">{{ user.name }}</li>
+    </ul>
         </el-main>
       </el-container>
     </el-container>
+
   </div>
 </template>
 
@@ -94,7 +99,8 @@ export default {
       address: "上海市普陀区金沙江路 1518 弄"
     };
     return {
-      tableData: Array(20).fill(item)
+      tableData: Array(20).fill(item),
+      users: []
     };
   },
 
@@ -102,7 +108,15 @@ export default {
 
   computed: {},
 
-  mounted: {},
+  created(){
+    fetch("/api/users")
+        .then((res) => res.json())
+        .then((json) => {
+          this.users = json.users
+        })
+  },
+
+  mounted(){},
 
   methods: {}
 };

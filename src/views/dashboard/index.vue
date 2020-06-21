@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-12-23 23:14:12
+ * @LastEditTime: 2020-06-21 23:52:49
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vue-bum-admin\src\views\dashboard\index.vue
+--> 
 <template>
   <div>仪表台</div>
 </template>
@@ -14,7 +22,7 @@ export default {
   // FIXME:FASF 
   computed: {},
 
-  mounted: {},
+  mounted(){},
 
   methods: {}
 }

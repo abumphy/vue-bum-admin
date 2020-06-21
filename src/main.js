@@ -12,6 +12,12 @@ import '@/styles/index.scss' // global css 全局样式
 
 import './icons' // icon
 
+import { makeServer } from "./server"
+
+if (process.env.NODE_ENV === "development") {
+  makeServer()
+}
+
 Vue.use(ElementUI, { size: 'small', zIndex: 3000 });
 
 Vue.config.productionTip = false;
