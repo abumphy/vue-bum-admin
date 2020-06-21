@@ -2,7 +2,7 @@
 const path = require('path')
 
 function resolve(dir) {
-  return path.join(__dirname, dir)
+	return path.join(__dirname, dir)
 }
 
 module.exports = {
@@ -134,6 +134,17 @@ module.exports = {
 				symbolId: 'icon-[name]',
 			})
 			.end()
+		// 去除模拟
+		if (
+			process.env.NODE_ENV === 'production' &&
+			process.env.MIRAGE_ENABLED !== 'true'
+		) {
+			config.module
+				.rule('exclude-mirage')
+				.test(/node_modules\/miragejs\//)
+				.use('null-loader')
+				.loader('null-loader')
+		}
 	},
 
 	/* css相关 */
