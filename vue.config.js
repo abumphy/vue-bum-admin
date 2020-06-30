@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const WebpackBar = require('webpackbar')
 
 function resolve(dir) {
 	return path.join(__dirname, dir)
@@ -111,6 +112,37 @@ module.exports = {
 		} else {
 			// 为开发环境修改配置...
 		}
+		return {
+			plugins: [
+				// 定制：构建进度条
+				new WebpackBar({
+					name: `vue-bum-admin的项目`,
+					// color: '#f40',
+					profile: true,
+					start(context) {
+
+						// Called when (re)compile is started
+					},
+					change(context) {
+						// Called when a file changed on watch mode
+					},
+					update(context) {
+						// Called after each progress update
+					},
+					done(context) {
+						// Called when compile finished
+					},
+					progress(context) {
+						// Called when build progress updated
+					},
+					allDone(context) {
+						// Called when _all_ compiles finished
+					},
+					beforeAllDone(context) {},
+					afterAllDone(context) {},
+				}),
+			],
+		}
 	},
 
 	/*
@@ -144,6 +176,12 @@ module.exports = {
 				.test(/node_modules\/miragejs\//)
 				.use('null-loader')
 				.loader('null-loader')
+		}
+		// 分析模块
+		if (process.env.use_analyzer) {
+			config
+				.plugin('webpack-bundle-analyzer')
+				.use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
 		}
 	},
 
